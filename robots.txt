@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://disciplinebrain.com/sitemap.xml
+Sitemap: https://www.graine-dempire.com/sitemap.xml

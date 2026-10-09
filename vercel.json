@@ -1,1 +1,8 @@
-{"cleanUrls":true,"trailingSlash":false}
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.graine-dempire.fr" }], "destination": "https://www.graine-dempire.com/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.graine-dempire.eu" }], "destination": "https://www.graine-dempire.com/:path*", "permanent": true }
+  ]
+}
