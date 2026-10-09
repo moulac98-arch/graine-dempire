@@ -138,10 +138,24 @@ section.block{padding:clamp(72px,10vw,130px) 0}
 h2.big{font-size:clamp(32px,4.6vw,56px); font-weight:850}
 
 /* video */
-.vgrid{display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:center}
-.phone{position:relative; border-radius:42px; padding:12px; background:linear-gradient(160deg,#2b2b27,#0b0b0a); box-shadow:0 0 0 1px rgba(255,255,255,.08), 0 40px 90px -20px rgba(0,0,0,.8), 0 0 90px -10px rgba(214,172,76,.35); transform:rotate(2deg)}
-.phone video{width:100%; border-radius:32px; background:#000; aspect-ratio:9/16; object-fit:cover}
-.phone::before{content:""; position:absolute; top:22px; left:50%; width:84px; height:22px; margin-left:-42px; border-radius:20px; background:#000; z-index:2}
+.vgrid{display:grid; grid-template-columns:1fr 250px; gap:70px; align-items:center}
+.vthumb{all:unset; cursor:pointer; display:grid; gap:14px; justify-items:center; text-align:center; -webkit-tap-highlight-color:transparent}
+.vimg{position:relative; display:block; width:220px; aspect-ratio:9/16; border-radius:22px; overflow:hidden; box-shadow:0 0 0 1px rgba(214,172,76,.35), 0 30px 70px -25px rgba(0,0,0,.85), 0 0 70px -15px rgba(214,172,76,.45); transform:rotate(-3deg); transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s}
+.vimg img{width:100%; height:100%; object-fit:cover; filter:saturate(1.05) brightness(.82); transition:filter .5s, transform .8s cubic-bezier(.2,.8,.2,1)}
+.vthumb:hover .vimg,.vthumb:focus-visible .vimg{transform:rotate(0) scale(1.03); box-shadow:0 0 0 1px rgba(214,172,76,.7), 0 30px 70px -25px rgba(0,0,0,.85), 0 0 90px -10px rgba(214,172,76,.6)}
+.vthumb:hover .vimg img{filter:brightness(.95); transform:scale(1.05)}
+.play{position:absolute; left:50%; top:50%; width:66px; height:66px; margin:-33px 0 0 -33px; border-radius:50%; background:linear-gradient(180deg,var(--gold-hi),var(--gold)); box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.play::before{content:""; position:absolute; left:27px; top:21px; border-left:18px solid #1a1206; border-top:12px solid transparent; border-bottom:12px solid transparent}
+.play::after{content:""; position:absolute; inset:-8px; border-radius:50%; border:2px solid rgba(244,216,142,.7); animation:ring 2.2s ease-out infinite}
+@keyframes ring{from{transform:scale(.85); opacity:1}to{transform:scale(1.5); opacity:0}}
+.vtxt b{display:block; font-family:var(--font-display); font-size:18px; color:var(--text)}
+.vtxt small{font-family:var(--font-mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold)}
+.vdlg{border:0; padding:0; background:transparent; max-width:none; max-height:none; overflow:visible}
+.vdlg::backdrop{background:rgba(3,8,5,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px)}
+.vdlg[open]{animation:pop .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0; transform:scale(.92)}to{opacity:1; transform:none}}
+.vdlg video{height:min(86vh,calc(92vw * 16 / 9)); width:auto; aspect-ratio:9/16; border-radius:20px; background:#000; box-shadow:0 0 0 1px rgba(214,172,76,.4), 0 0 120px -20px rgba(214,172,76,.5)}
+.vclose{position:absolute; top:-14px; right:-14px; z-index:2; width:42px; height:42px; border-radius:50%; border:1px solid var(--line); background:rgba(10,23,16,.9); color:var(--text); font-size:18px; cursor:pointer}
 .checks{list-style:none; padding:0; margin:26px 0 30px; display:grid; gap:12px}
 .checks li{display:flex; gap:12px; align-items:flex-start; color:var(--text)}
 .checks li::before{content:"✦"; color:var(--gold); flex:none}
@@ -258,10 +272,14 @@ footer small{color:var(--muted)}
   .stage{height:430px; order:-1; margin-bottom:-10px}
   .book{--w:min(200px,44vw); --t:20px}
   .chip-float.c3{display:none}
-  .vgrid .phone{max-width:340px; margin:0 auto}
   .steps,.guides,.facts,.cards,.reads-list{grid-template-columns:1fr}
   .nav-links{display:none}
   .sticky-cta{display:flex}
+  .vthumb{grid-template-columns:96px 1fr; justify-items:start; text-align:left; align-items:center; gap:18px; width:100%; padding:14px; border-radius:20px; border:1px solid var(--line); background:var(--card); box-sizing:border-box; margin-top:8px}
+  .vimg{width:96px; border-radius:14px; transform:none}
+  .play{width:40px; height:40px; margin:-20px 0 0 -20px}
+  .play::before{left:16px; top:12px; border-left-width:12px; border-top-width:8px; border-bottom-width:8px}
+  .vclose{top:8px; right:8px}
 }
 @media (max-width:560px){
   body{font-size:16px}
@@ -278,7 +296,6 @@ footer small{color:var(--muted)}
   .logo{font-size:16px; gap:8px}
   .logo-mark{width:24px; height:24px}
   header .btn--sm{padding:9px 13px; font-size:10.5px}
-  .vgrid .phone{max-width:290px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important; transition:none !important}
@@ -327,7 +344,7 @@ footer small{color:var(--muted)}
       <div class="tags"><span>Sans local</span><span>Sans cuisine</span><span>Sans expérience</span></div>
       <div class="cta-row">
         <a class="btn btn--gold" href="https://payhip.com/b/mGozX?utm_source=graine-dempire&utm_medium=site&utm_campaign=graine-empire&utm_content=hero" target="_blank" rel="noopener">Je commande le pack — 29,90 €</a>
-        <a class="btn btn--ghost" href="#video">▶ Voir la vidéo (39 s)</a>
+        <a class="btn btn--ghost" href="#video" data-video>▶ Voir la vidéo (39 s)</a>
       </div>
       <p class="note">Prix de lancement jusqu'au 1er novembre 2026 · encore <b><span data-cd="d">–</span> j <span data-cd="h">–</span> h <span data-cd="m">–</span> min</b> — 39,90 € ensuite.</p>
     </div>
@@ -360,12 +377,10 @@ footer small{color:var(--muted)}
       </ul>
       <a class="btn btn--gold" href="https://payhip.com/b/mGozX?utm_source=graine-dempire&utm_medium=site&utm_campaign=graine-empire&utm_content=video" target="_blank" rel="noopener">Je me lance — 29,90 €</a>
     </div>
-    <div class="phone" data-reveal style="--d:2">
-      <video controls preload="metadata" poster="assets/pub-poster.jpg?v=6" playsinline width="1080" height="1920" aria-label="Publicité vidéo — présentation de Graine d'Empire">
-        <source src="video.mp4?v=6" type="video/mp4">
-        Votre navigateur ne permet pas la lecture de cette vidéo. <a href="video.mp4">Téléchargez-la directement</a>.
-      </video>
-    </div>
+    <button class="vthumb" type="button" data-video data-reveal style="--d:2" aria-label="Lire la vidéo de présentation (39 secondes)">
+      <span class="vimg"><img src="assets/pub-poster.jpg?v=6" alt="" width="1080" height="1920" loading="lazy" decoding="async"><span class="play"></span></span>
+      <span class="vtxt"><b>Le concept en 39 secondes</b><small>▶ Regarder la vidéo</small></span>
+    </button>
   </div>
 </section>
 
@@ -814,6 +829,14 @@ footer small{color:var(--muted)}
   </div>
 </footer>
 
+<dialog class="vdlg" id="vdlg" aria-label="Vidéo de présentation de Graine d'Empire">
+  <button class="vclose" type="button" aria-label="Fermer la vidéo">✕</button>
+  <video controls playsinline preload="none" poster="assets/pub-poster.jpg?v=6" width="1080" height="1920">
+    <source src="video.mp4?v=6" type="video/mp4">
+    Votre navigateur ne permet pas la lecture de cette vidéo. <a href="video.mp4">Téléchargez-la directement</a>.
+  </video>
+</dialog>
+
 <div class="sticky-cta">
   <div class="p">Pack complet<b>29,90 €</b></div>
   <a class="btn btn--gold btn--sm" href="https://payhip.com/b/mGozX?utm_source=graine-dempire&utm_medium=site&utm_campaign=graine-empire&utm_content=sticky-cta" target="_blank" rel="noopener">Commander</a>
@@ -991,6 +1014,20 @@ footer small{color:var(--muted)}
   var st=d.querySelector('.sticky-cta'), hero=d.querySelector('.hero');
   if(st && hero && 'IntersectionObserver' in window){
     new IntersectionObserver(function(es){st.classList.toggle('on',!es[0].isIntersecting)}).observe(hero);
+  }
+
+  // video modal
+  var dlg=d.getElementById('vdlg'), vid=dlg&&dlg.querySelector('video');
+  d.querySelectorAll('[data-video]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      if(!dlg || typeof dlg.showModal!=='function'){ if(b.tagName==='BUTTON') location.href='video.mp4'; return; }
+      e.preventDefault(); dlg.showModal(); try{vid.currentTime=0; var pr=vid.play(); if(pr&&pr.catch)pr.catch(function(){});}catch(_){}
+    });
+  });
+  if(dlg){
+    dlg.querySelector('.vclose').addEventListener('click',function(){dlg.close()});
+    dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+    dlg.addEventListener('close',function(){vid.pause()});
   }
 
   // golden dust
