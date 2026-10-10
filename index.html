@@ -218,6 +218,25 @@ h2.big{font-size:clamp(32px,4.6vw,56px); font-weight:850}
 .bonus .bi{font-size:30px; line-height:1}
 .bonus p{margin:6px 0 0; color:var(--muted); font-size:14.5px}
 
+/* apercu previews */
+.preview-guide{margin-top:48px}
+.preview-label{margin-bottom:18px}
+.preview-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.preview-fig{margin:0; position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line2); background:var(--card)}
+.preview-fig img{width:100%; height:auto; display:block; transition:transform .4s}
+.preview-fig:hover img{transform:scale(1.03)}
+.preview-fig figcaption{padding:10px 14px; font-size:13px; color:var(--muted); font-family:var(--font-mono); border-top:1px solid var(--line2)}
+.preview-cta{text-align:center; margin-top:48px}
+@media(max-width:680px){.preview-grid{grid-template-columns:1fr}}
+
+/* author card */
+.author-card{display:flex; gap:28px; align-items:flex-start; padding:32px 36px; border-radius:22px; border:1px solid var(--line); background:linear-gradient(135deg,rgba(214,172,76,.08),rgba(214,172,76,.02))}
+.author-avatar{flex-shrink:0; width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,var(--gold-lo),var(--gold)); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:13px; font-weight:600; color:#1a1206; letter-spacing:.05em}
+.author-name{font-size:clamp(20px,2.5vw,26px); margin:6px 0 10px; color:var(--text)}
+.author-bio{color:#DCD6C9; margin:0 0 16px; font-size:16px; line-height:1.65}
+.author-creds{display:flex; flex-wrap:wrap; gap:10px 22px; font-family:var(--font-mono); font-size:12.5px; color:var(--gold); letter-spacing:.05em}
+@media(max-width:600px){.author-card{flex-direction:column; padding:24px 22px}.author-avatar{width:52px; height:52px}}
+
 /* faq */
 .faq{max-width:780px; margin:40px auto 0; display:grid; gap:12px}
 details{border:1px solid var(--line2); border-radius:16px; background:var(--card); padding:0 22px; transition:border-color .3s}
@@ -424,6 +443,53 @@ footer small{color:var(--muted)}
   </div>
 </section>
 
+<section class="block" id="apercu" style="padding-top:0">
+  <div class="wrap">
+    <div data-reveal><div class="eyebrow">Aperçu du contenu</div>
+    <h2 class="big" style="max-width:22ch">Voilà exactement <span class="gold">ce que vous recevez.</span></h2></div>
+
+    <div class="preview-guide" data-reveal>
+      <div class="preview-label"><span class="gnum">Guide 1 · De l'idée à la marque</span></div>
+      <div class="preview-grid">
+        <figure class="preview-fig">
+          <img src="assets/previews/guide1-cover.png" alt="Couverture du Guide 1 – Planter une idée, récolter une marque" loading="lazy" width="800">
+          <figcaption>Couverture du guide</figcaption>
+        </figure>
+        <figure class="preview-fig">
+          <img src="assets/previews/guide1-criteres.png" alt="Page du Guide 1 – Les 6 critères d'une idée qui a des chances de marcher" loading="lazy" width="800">
+          <figcaption>Les 6 critères d'une idée viable (p. 9)</figcaption>
+        </figure>
+        <figure class="preview-fig">
+          <img src="assets/previews/guide1-script.png" alt="Page du Guide 1 – Les 8 arguments clés face au restaurateur" loading="lazy" width="800">
+          <figcaption>Les 8 arguments clés + script complet (p. 28)</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="preview-guide" data-reveal style="--d:1">
+      <div class="preview-label"><span class="gnum">Guide 2 · Le guide agence 360</span></div>
+      <div class="preview-grid">
+        <figure class="preview-fig">
+          <img src="assets/previews/guide2-cover.png" alt="Couverture du Guide 2 – Marques de restauration virtuelle" loading="lazy" width="800">
+          <figcaption>Couverture du guide</figcaption>
+        </figure>
+        <figure class="preview-fig">
+          <img src="assets/previews/guide2-questionnaire.png" alt="Page du Guide 2 – Questionnaire de prospection structuré" loading="lazy" width="800">
+          <figcaption>Questionnaire de prospection (p. 7)</figcaption>
+        </figure>
+        <figure class="preview-fig">
+          <img src="assets/previews/guide2-marketing.png" alt="Page du Guide 2 – ROAS, publicité et offres" loading="lazy" width="800">
+          <figcaption>Chapitre ROAS & publicité (p. 25)</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="preview-cta" data-reveal>
+      <a class="btn btn--gold" href="https://payhip.com/b/mGozX?utm_source=graine-dempire&utm_medium=site&utm_campaign=graine-empire&utm_content=apercu-cta" target="_blank" rel="noopener">Je commande le pack — 29,90 €</a>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="marche" style="padding-top:0">
   <div class="wrap">
     <div data-reveal><div class="eyebrow">Pourquoi maintenant</div>
@@ -431,7 +497,7 @@ footer small{color:var(--muted)}
     <div class="facts" data-reveal>
       <div class="fact"><b class="gold" data-count="1500" data-suf="+">1 500+</b><span>dark kitchens référencées sur Uber Eats en France¹</span></div>
       <div class="fact"><b class="gold" data-count="0" data-suf=" €">0 €</b><span>de local, de travaux ou de matériel à financer</span></div>
-      <div class="fact"><b class="gold" data-count="190" data-suf=" €">190 €</b><span>pour déposer votre marque à l'INPI (une classe)²</span></div>
+      <div class="fact"><b class="gold" data-count="190" data-suf=" €">190 €</b><span>pour déposer votre marque à l'INPI (une classe)² — optionnel, et réalisé après vos premières ventes</span></div>
     </div>
     <p class="src">¹ <a href="https://www.businesscoot.com/fr/etude/the-dark-kitchen-market-france" target="_blank" rel="noopener nofollow">Businesscoot, marché des dark kitchens en France</a> · ² <a href="https://www.captaincontrat.com/protection-des-creations/depot-de-marque/cout-depot-marque-inpi" target="_blank" rel="noopener nofollow">Captain Contrat, tarif INPI 2026</a> — à reconfirmer sur inpi.fr.</p>
   </div>
@@ -491,6 +557,24 @@ footer small{color:var(--muted)}
       <div>
         <strong>Privilège réservé au pack complet — 20 places maximum</strong>
         <p>En prenant le pack complet, vous débloquez l'accès direct aux contacts de l'agence 360 Group — avec 20 % de réduction sur leurs services. Cet accompagnement personnalisé est limité aux 20 premières personnes qui présentent leur commande passée sur ce site ; au-delà, la remise pourra ne plus être garantie selon les disponibilités de l'agence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="auteur" style="padding-top:0">
+  <div class="wrap">
+    <div class="author-card" data-reveal>
+      <div class="author-avatar" aria-hidden="true">ME</div>
+      <div class="author-body">
+        <div class="eyebrow">Qui a écrit ces guides</div>
+        <h2 class="author-name">Mohamed-Amine El Ghezali</h2>
+        <p class="author-bio">Fondateur de Japan Dar SNC et associé de l'agence 360 Group, j'ai accompagné le lancement de plusieurs marques de restauration virtuelle sur Uber Eats en France. Ces guides sont la formalisation de ce qui marche — et de ce qui ne marche pas — sur le terrain.</p>
+        <div class="author-creds">
+          <span>✓ Marques actives sur Uber Eats</span>
+          <span>✓ Partenaire agence 360 Group</span>
+          <span>✓ Basé à Genève</span>
+        </div>
       </div>
     </div>
   </div>
