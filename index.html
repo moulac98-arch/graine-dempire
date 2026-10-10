@@ -322,6 +322,19 @@ h2.big{font-size:clamp(32px,4.6vw,56px); font-weight:850}
 .author-creds{display:flex; flex-wrap:wrap; gap:10px 22px; font-family:var(--font-mono); font-size:12.5px; color:var(--gold); letter-spacing:.05em}
 @media(max-width:600px){.author-card{flex-direction:column; padding:24px 22px}.author-avatar{width:52px; height:52px}}
 
+/* email capture */
+.email-capture{background:linear-gradient(135deg,rgba(214,172,76,.12),rgba(214,172,76,.03)); border:1px solid var(--line); border-radius:24px; padding:42px 40px; text-align:center; position:relative; overflow:hidden}
+.email-capture::before{content:"";position:absolute;right:-100px;top:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(closest-side,rgba(214,172,76,.2),transparent)}
+.email-capture .eyebrow{margin-bottom:10px}
+.email-capture h2{font-size:clamp(26px,3.5vw,36px); margin:0 0 12px}
+.email-capture p{color:var(--muted); margin:0 0 28px; max-width:52ch; margin-inline:auto; margin-bottom:28px}
+.capture-form{display:flex; gap:10px; max-width:480px; margin:0 auto; position:relative; z-index:1}
+.capture-form input[type="email"]{flex:1; background:rgba(255,255,255,.06); border:1px solid var(--line2); border-radius:999px; padding:14px 22px; font-family:var(--font-body); font-size:15px; color:var(--text); outline:none; transition:border-color .25s}
+.capture-form input[type="email"]:focus{border-color:var(--gold)}
+.capture-form input[type="email"]::placeholder{color:var(--muted)}
+.capture-fine{font-family:var(--font-mono); font-size:11.5px; color:var(--muted); margin-top:14px; position:relative; z-index:1}
+@media(max-width:560px){.email-capture{padding:28px 20px}.capture-form{flex-direction:column}.capture-form input[type="email"]{border-radius:14px}}
+
 /* faq */
 .faq{max-width:780px; margin:40px auto 0; display:grid; gap:12px}
 details{border:1px solid var(--line2); border-radius:16px; background:var(--card); padding:0 22px; transition:border-color .3s}
@@ -661,6 +674,22 @@ footer small{color:var(--muted)}
           <span>✓ Basé à Genève</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="email-capture" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="email-capture" data-reveal>
+      <div class="eyebrow">Checklist offerte</div>
+      <h2>Les 12 étapes pour lancer votre première marque virtuelle</h2>
+      <p>Recevez gratuitement la checklist complète : de l'idée de concept à la première commande Uber Eats, étape par étape.</p>
+      <form class="capture-form" action="https://app.brevo.com/mailing-list/manage-contact" method="GET" target="_blank" onsubmit="return validateEmail(this)">
+        <input type="email" name="EMAIL" placeholder="votre@email.com" required autocomplete="email" />
+        <input type="hidden" name="REDIRECT_LINK" value="https://www.graine-dempire.com/merci" />
+        <button type="submit" class="btn btn--flame">Recevoir la checklist →</button>
+      </form>
+      <p class="capture-fine">Pas de spam. Juste la méthode. Désabonnement en 1 clic.</p>
     </div>
   </div>
 </section>
@@ -1201,6 +1230,15 @@ footer small{color:var(--muted)}
     dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
     dlg.addEventListener('close',function(){vid.pause()});
   }
+
+  // email capture validation
+  window.validateEmail = function(form){
+    var email = form.EMAIL.value.trim();
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ return false; }
+    // Store email locally so we can follow up
+    try{ localStorage.setItem('ge_email_captured','1'); }catch(e){}
+    return true;
+  };
 
   // golden dust
   var cv=d.getElementById('dust');
